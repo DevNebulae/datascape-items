@@ -1,7 +1,8 @@
 package com.github.devnebulae.datascape.item
 
-import org.springframework.data.repository.CrudRepository
-import org.springframework.stereotype.Repository
+import org.springframework.data.cassandra.repository.CassandraRepository
+import org.springframework.data.rest.core.annotation.RepositoryRestResource
+import java.util.UUID
 
-@Repository
-interface ItemRepository : CrudRepository<Item, Long>
+@RepositoryRestResource(collectionResourceRel = "items", path = "/items")
+interface ItemRepository : CassandraRepository<Item, UUID>
