@@ -1,0 +1,7 @@
+spring:
+  data:
+    cassandra:
+      cluster-name: DataScapeItems
+      contact-points:
+        - "localhost"
+      keyspace-name: datascape_items_tradeable
