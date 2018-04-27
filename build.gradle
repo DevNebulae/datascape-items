@@ -21,7 +21,7 @@ apply plugin: 'io.spring.dependency-management'
 apply plugin: 'war'
 
 group = 'com.github.devnebulae'
-version = '1.0.0'
+version = '1.1.0'
 sourceCompatibility = 1.8
 compileKotlin {
 	kotlinOptions {
@@ -37,21 +37,33 @@ compileTestKotlin {
 }
 
 repositories {
+    jcenter()
 	mavenCentral()
 }
 
 configurations {
+    ktlint
 	providedRuntime
 }
 
 dependencies {
+    ktlint "com.github.shyiko:ktlint:0.22.0"
     compile('com.fasterxml.jackson.core:jackson-databind')
     compile('com.fasterxml.jackson.module:jackson-module-kotlin')
     compile("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     compile("org.jetbrains.kotlin:kotlin-reflect")
     compile('org.springframework.boot:spring-boot-starter-data-cassandra')
+    compile('org.springframework.boot:spring-boot-starter-data-hateoas')
+    compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    main = "com.github.shyiko.ktlint.Main"
+    args "src/**/*.kt"
 }
