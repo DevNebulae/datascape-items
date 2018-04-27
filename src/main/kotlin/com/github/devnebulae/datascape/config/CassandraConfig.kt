@@ -6,8 +6,10 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
 import org.springframework.core.env.get
 import org.springframework.data.cassandra.config.AbstractCassandraConfiguration
+import org.springframework.data.cassandra.config.CompressionType
 import org.springframework.data.cassandra.config.SchemaAction
 import org.springframework.data.cassandra.core.cql.keyspace.CreateKeyspaceSpecification
+import org.springframework.data.cassandra.core.cql.keyspace.DropKeyspaceSpecification
 
 @Configuration
 class CassandraConfig : AbstractCassandraConfiguration() {
@@ -15,7 +17,18 @@ class CassandraConfig : AbstractCassandraConfiguration() {
     private lateinit var environment: Environment
 
     override fun getEntityBasePackages(): Array<String> {
-        return arrayOf("com.github.devnebulae.datascape.item")
+        return arrayOf(
+            "com.github.devnebulae.datascape.item"
+        )
+    }
+
+    @Bean
+    override fun getKeyspaceDrops(): MutableList<DropKeyspaceSpecification> {
+        return mutableListOf(
+            DropKeyspaceSpecification
+                .dropKeyspace(keyspaceName)
+                .ifExists()
+        )
     }
 
     @Bean
@@ -33,6 +46,6 @@ class CassandraConfig : AbstractCassandraConfiguration() {
     }
 
     override fun getSchemaAction(): SchemaAction {
-        return SchemaAction.RECREATE
+        return SchemaAction.CREATE_IF_NOT_EXISTS
     }
 }
