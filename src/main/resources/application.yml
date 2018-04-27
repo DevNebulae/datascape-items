@@ -2,8 +2,6 @@ spring:
   data:
     cassandra:
       cluster-name: DataScapeItems
-      compression: snappy
       contact-points:
         - "localhost"
       keyspace-name: datascape_items_tradeable
-      schema-action: create_if_not_exists
