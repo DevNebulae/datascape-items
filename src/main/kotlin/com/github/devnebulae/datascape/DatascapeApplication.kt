@@ -20,7 +20,6 @@ class DatascapeApplication {
             .readValue<Map<String, ItemDto>>(ClassPathResource("items.json").file)
             .map { Item(it.key.toLong(), it.value.name, it.value.store.toLong()) }
 
-
         repository.saveAll(items)
     }
 }
