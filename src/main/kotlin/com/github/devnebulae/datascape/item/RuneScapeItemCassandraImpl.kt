@@ -9,7 +9,7 @@ import java.io.Serializable
 import java.util.UUID
 
 @Table("item")
-data class Item(
+data class RuneScapeItemCassandraImpl(
     val itemId: Long,
 
     val name: String,

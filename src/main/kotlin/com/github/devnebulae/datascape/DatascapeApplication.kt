@@ -2,7 +2,7 @@ package com.github.devnebulae.datascape
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.github.devnebulae.datascape.item.Item
+import com.github.devnebulae.datascape.item.RuneScapeItemCassandraImpl
 import com.github.devnebulae.datascape.item.ItemRepository
 import com.github.devnebulae.datascape.item.RuneScapeItemDTO
 import org.springframework.boot.CommandLineRunner
@@ -18,7 +18,7 @@ class DatascapeApplication {
         val mapper = ObjectMapper()
         val items = mapper
             .readValue<RuneScapeItemDTO>(ClassPathResource("items.json").file)
-            .map { Item(it.key.toLong(), it.value.name, it.value.store.toLong()) }
+            .map { RuneScapeItemCassandraImpl(it.key.toLong(), it.value.name, it.value.store.toLong()) }
 
         repository.saveAll(items)
     }
