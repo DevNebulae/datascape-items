@@ -1,20 +1,15 @@
 package com.github.devnebulae.datascape.item
 
-import com.github.devnebulae.datascape.dto.DataTransferObject
-import java.io.Serializable
+interface RSBuddyItem {
+    val name: String
 
-/**
- * The Kotlin representation of a RuneScape item by the RSBuddy API. The API
- * provides the data in the following format:
- * `{"2": {"store": 5, "name": "Cannonball"}`. The DTO only covers the value
- * of the Map<String, ItemDto>.
- */
-
-class RSBuddyItem {
-    lateinit var name: String
-
-    lateinit var store: String
+    val store: String
 }
 
+/**
+ * Models a response of the RSBuddy API to a value object. The RSBuddy API
+ * provides data in the following format:
+ * `{"2": {"store": 5, "name": "Cannonball"}}`.
+ */
 typealias RuneScapeItemDTO = Map<String, RSBuddyItem>
 
