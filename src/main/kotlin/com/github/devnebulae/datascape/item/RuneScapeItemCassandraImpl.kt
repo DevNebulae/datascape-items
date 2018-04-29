@@ -9,13 +9,13 @@ import java.io.Serializable
 import java.util.UUID
 
 @Table("item")
-data class Item(
-    val itemId: Long,
+data class RuneScapeItemCassandraImpl(
+    override val itemId: Long,
 
-    val name: String,
+    override val name: String,
 
-    val store: Long
-) : Serializable {
+    override val store: Long
+) : RuneScapeItem, Serializable {
     @Id
     @PrimaryKeyColumn(
         name = "id",

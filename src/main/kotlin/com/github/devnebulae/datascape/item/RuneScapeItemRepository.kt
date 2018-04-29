@@ -5,4 +5,4 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource
 import java.util.UUID
 
 @RepositoryRestResource(collectionResourceRel = "items", path = "/items")
-interface ItemRepository : CassandraRepository<Item, UUID>
+interface RuneScapeItemRepository : CassandraRepository<RuneScapeItemCassandraImpl, UUID>
