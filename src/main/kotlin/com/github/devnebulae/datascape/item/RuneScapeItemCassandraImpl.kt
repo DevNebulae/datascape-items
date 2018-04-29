@@ -10,12 +10,12 @@ import java.util.UUID
 
 @Table("item")
 data class RuneScapeItemCassandraImpl(
-    val itemId: Long,
+    override val itemId: Long,
 
-    val name: String,
+    override val name: String,
 
-    val store: Long
-) : Serializable {
+    override val store: Long
+) : RuneScapeItem, Serializable {
     @Id
     @PrimaryKeyColumn(
         name = "id",
