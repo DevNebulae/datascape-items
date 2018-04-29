@@ -12,4 +12,3 @@ interface RSBuddyItem {
  * `{"2": {"store": 5, "name": "Cannonball"}}`.
  */
 typealias RuneScapeItemDTO = Map<String, RSBuddyItem>
-
