@@ -1,9 +1,9 @@
 package com.github.devnebulae.datascape.item
 
-interface RSBuddyItem {
-    val name: String
+class RSBuddyItem {
+    lateinit var name: String
 
-    val store: String
+    lateinit var store: String
 }
 
 /**
